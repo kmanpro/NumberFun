@@ -1,0 +1,30 @@
+﻿@page "/"
+
+<h3>Welcome to the Number Filter!</h3>
+<EditForm OnValidSubmit="executeNumberFilter" Model="numberFilterInputModel">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="card">
+        <div class="card-body">
+            <div class="form-group">
+                <label class="font-weight-bold">Enter Number List, comma separated (ex. 1,2,7,4,9,3):</label>
+                <input class="form-control" type="text" @bind-value="numberFilterInputModel.NumberArrayInput" />
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold">Enter Filter Number:</label>
+                <input class="form-control" type="number" @bind-value="numberFilterInputModel.NumberFilterInput" />
+            </div>
+            <button type="submit" class="btn btn-primary">Execute Number Filter</button>
+        </div>
+    </div>
+</EditForm>
+
+@if (pageState.NumberFilterResult != null)
+{
+    <div class="mt-5">
+        <h3>The result of your number filter is:</h3>
+        <div class="alert-info p-2">
+            above: @pageState.NumberFilterResult.NumberOfIntegersAbove, below: @pageState.NumberFilterResult.NumberOfIntegersBelow
+        </div>
+    </div>
+}

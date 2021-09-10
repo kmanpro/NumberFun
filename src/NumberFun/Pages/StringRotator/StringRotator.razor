@@ -1,0 +1,32 @@
+﻿@page "/StringRotator"
+
+<h3>Welcome to the String Rotator!</h3>
+<EditForm OnValidSubmit="executeStringRotator" Model="stringRotatorInputModel">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="card">
+        <div class="card-body">
+            <div class="form-group">
+                <label class="font-weight-bold">Enter a string to rotate:</label>
+                <input class="form-control" type="text" @bind-value="stringRotatorInputModel.StringRotatorInput" />
+                <ValidationMessage For="() => stringRotatorInputModel.StringRotatorInput" />
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold">Enter number of iterations to rotate:</label>
+                <input class="form-control" type="number" @bind-value="stringRotatorInputModel.StringRotatorIterations" />
+                <ValidationMessage For="() => stringRotatorInputModel.StringRotatorIterations" />
+            </div>
+            <button type="submit" class="btn btn-primary">String Rotator</button>
+        </div>
+    </div>
+</EditForm>
+
+@if (pageState.StringRotatorResult != null)
+{
+    <div class="mt-5">
+        <h3>The result of your string rotation is:</h3>
+        <div class="alert-info p-2">
+            @pageState.StringRotatorResult.Result
+        </div>
+    </div>
+}
